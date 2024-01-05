@@ -6,73 +6,77 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:17:09 by lgalloux          #+#    #+#             */
-/*   Updated: 2023/12/30 12:53:31 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/01/05 19:24:53 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "libft.h"
 
-static void error(void)
+void ft_error(char *error)
 {
-	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
+	ft_printf("Error: %s\n", error);
 	exit(EXIT_FAILURE);
 }
 
-mlx_t	*ft_initialize(t_map info)
+int	ft_initialize(t_env *env)
 {
-	info.mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
-	if (!info.mlx)
-		error();
-	return (info.mlx);
+	env->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
+	if (!env->mlx)
+		ft_error("Error when initializing");
+	return (0);
 }
 
-int	ft_create_texture(t_map info, char *image)
+int	ft_create_texture(t_env *env, char *image)
 {
 	mlx_texture_t* texture = mlx_load_png(image);
 	if (!texture)
-        	error();
-	mlx_image_t* img = mlx_texture_to_image(info.mlx, texture);
+        ft_error("Error when creating texture");
+	mlx_image_t* img = mlx_texture_to_image(env->mlx, texture);
 	if (!img)
-		error();
-	if (mlx_image_to_window(info.mlx, img, 0, 0) < 0)
-        	error();
-	mlx_loop(info.mlx);
+		ft_error("Error when creating image");
+	if (mlx_image_to_window(env->mlx,
+		img, env->texture.y * 32, env->texture.x * 32) < 0)
+        ft_error("Error when exporting image to window");
 	return (0);
 }
 
-int	which_texture(t_map info, char texture)
+int	which_texture(t_env *env, char texture)
 {
+	if (texture < 0)
+		texture *= -1;
 	if (texture == '0')
-		ft_create_texture(info, "./sprites/tiles/ground.png");
+		ft_create_texture(env, "./sprites/tiles/ground.png");
 	if (texture == '1')
-		ft_create_texture(info, "./sprites/tiles/wall.png");
+		ft_create_texture(env, "./sprites/tiles/wall.png");
 	if (texture == 'C')
-		ft_create_texture(info, "./sprites/tiles/ground.png");
+		ft_create_texture(env, "./sprites/tiles/ground.png");
 	if (texture == 'E')
-		ft_create_texture(info, "./sprites/tiles/door.png");
+		ft_create_texture(env, "./sprites/tiles/door.png");
 	if (texture == 'P')
-		ft_create_texture(info, "./sprites/tiles/ground.png");
-	if (texture == '\n')
-		printf("%d", '\n');
+	{
+		ft_create_texture(env, "./sprites/tiles/ground.png");
+		ft_create_texture(env, "./sprites/hero/idle/idle-knight-r-1.png");
+	}
 	return (0);
 }
 
-int	reading_map(t_map info)
+int	reading_map(t_env *env)
 {
-	int	i;
-	int	j;
-	i = 0;
-	j = 0;
-	while (info.map[i])
+	size_t	x;
+	int	y;
+	x = 0;
+	while (x < env->map.line_nbr)
 	{
-		while (info.map[i][j])
+		y = 0;
+		while (env->map.map[x][y])
 		{
-			which_texture(info, info.map[i][j]);
-			j++;
+			env->texture.x = x;
+			env->texture.y = y;
+			which_texture(env, env->map.map[x][y]);
+			y++;
 		}
-		j = 0;
-		i++;
+		x++;
 	}
 	return (0);
 }

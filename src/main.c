@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:12:06 by lgalloux          #+#    #+#             */
-/*   Updated: 2023/12/30 12:53:37 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/01/05 19:00:42 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 int	main(int argc, char **argv)
 {
-	t_map	info;
+	t_env	env;
 	(void)argc;
-	info.fd = 3;
-	info.line_nbr = ft_parsing(info, argv[1]);
-	ft_verif(info);
-	ft_initialize(info);
-	reading_map(info);
+	map_init(&env, argv[1]);
+	ft_verif(&env);
+	ft_initialize(&env);
+	reading_map(&env);
+	mlx_loop(env.mlx);
 }
