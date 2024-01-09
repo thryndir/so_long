@@ -6,16 +6,13 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 01:40:12 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/05 18:01:11 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/01/08 19:04:57 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "libft.h"
 
-/*Empecher les .txt*/
-
-int	ft_verif(t_env	*env)
+int	map_verif(t_env	*env)
 {
 	size_t	x;
 	size_t	y;

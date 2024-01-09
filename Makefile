@@ -6,18 +6,18 @@
 #    By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 20:04:03 by lgalloux          #+#    #+#              #
-#    Updated: 2024/01/05 18:09:05 by lgalloux         ###   ########.fr        #
+#    Updated: 2024/01/08 18:09:13 by lgalloux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= Game
+NAME	= so_long
 CC 	= cc
 CFLAGS	= -Wextra -Wall -Werror -g
 HEADER = -Iinclude
 LIB = lib/Libft/libft.a
 LFLAGS	= -Llib -lmlx42 -ldl -lglfw -pthread
 
-FILES = main verif struct_init create_map\
+FILES = main verif struct_init create_map move\
 
 SRC_DIR = src/
 OBJ_DIR = obj/
