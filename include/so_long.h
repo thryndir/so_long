@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 18:20:08 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/10 13:23:48 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:58:46 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,15 @@ typedef struct s_map
 typedef struct s_texture
 {
 	mlx_texture_t	*ground;
+	int	g_bool;
 	mlx_texture_t	*wall;
+	int	w_bool;
 	mlx_texture_t	*player;
+	int	p_bool;
 	mlx_texture_t	*collec;
+	int	c_bool;
 	mlx_texture_t	*exit;
+	int	e_bool;
 } t_texture;
 
 typedef struct s_images
@@ -81,21 +86,24 @@ typedef struct s_env
 	mlx_t	*mlx;
 } t_env;
 
-int	map_init(t_env *env, char *argv);
+void	map_init(t_env *env, char *argv);
 void	pce_init(t_env *env);
 void	textures_init(t_env *env);
+void	count_line(t_env *env, char *argv);
 void	images_init(t_env *env);
-int	which_texture(t_env *env, char *texture);
-int	ft_create_texture(t_env *env, mlx_image_t *image, int offset);
+int	which_image(t_env *env, char *texture);
+int	display_images(t_env *env, mlx_image_t *image, int offset);
 int	map_read(t_env *env);
 int	my_mlx_init(t_env *env);
-int	is_closed(t_map *map);
-int	is_full(t_map *map);
-int	is_square(t_map *map);
+int	is_closed(t_env *env);
+int	is_full(t_env *env);
+int	is_square(t_env *env);
 int	map_verif(t_env *env);
-void	ft_error(char *error);
+void	ft_error(t_env *env, char *error, int nbr);
 void	pathway(t_map *map, size_t x, size_t y);
 void	my_keyhook(mlx_key_data_t keydata, void *params);
 void	player_move(t_env *env, size_t x, size_t y);
+void	ft_quit(t_env *env, int nbr);
+void	del_textures(t_env *env);
 
 #endif

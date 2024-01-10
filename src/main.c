@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:12:06 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/10 14:44:17 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:33:40 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ int	main(int argc, char **argv)
 	map_read(&env);
 	mlx_key_hook(env.mlx, my_keyhook, &env);
 	mlx_loop(env.mlx);
+	ft_quit(&env, 2);
 }

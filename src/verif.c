@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 01:40:12 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/08 19:04:57 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:58:18 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	map_verif(t_env	*env)
 
 	x = 0;
 	y = 0;
-	is_full(&env->map);
-	is_square(&env->map);
-	is_closed(&env->map);
+	is_full(env);
+	is_square(env);
+	is_closed(env);
 	pathway(&env->map, env->player.x, env->player.y);
 	while (x < env->map.line_nbr)
 	{
@@ -29,80 +29,80 @@ int	map_verif(t_env	*env)
 			&& !ft_strchr(env->map.map[x], 'C'))
 			x++;
 		else
-			ft_error("Exit or coin not accessible");
+			ft_error(env, "Exit or coin not accessible", 2);
 	}
 	return (0);
 }
 
-int	is_closed(t_map	*map)
+int	is_closed(t_env	*env)
 {
 	size_t i;
 	size_t j;
 
 	j = 0;
 	i = 0;
-	while (i < map->line_nbr)
+	while (i < env->map.line_nbr)
 	{
-		if (map->map[i][0] != '1' 
-			|| map->map[i][map->line_len - 2] != '1')
-			ft_error("You need a closed map on top or bottom");
+		if (env->map.map[i][0] != '1' 
+			|| env->map.map[i][env->map.line_len - 2] != '1')
+			ft_error(env, "You need a closed map on top or bottom", 2);
 		i++;
 	}
-	while (j < map->line_len - 1)
+	while (j < env->map.line_len - 1)
 	{
-		if (map->map[0][j] != '1' 
-			|| map->map[map->line_nbr - 1][j] != '1')
-			ft_error("You need a closed map on the sides");
+		if (env->map.map[0][j] != '1' 
+			|| env->map.map[env->map.line_nbr - 1][j] != '1')
+			ft_error(env, "You need a closed map on the sides", 2);
 		j++;
 	}
 	return (0);
 }
 
-int	is_full(t_map	*map)
+int	is_full(t_env	*env)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
-	while (i < map->line_nbr)
+	while (i < env->map.line_nbr)
 	{
 		j = 0;
-		while (map->map[i][j] != '\n' && map->map[i][j] != '\0')
+		while (env->map.map[i][j] != '\n' && env->map.map[i][j] != '\0')
 		{
-			if (map->map[i][j] == '1' || map->map[i][j] == 'C' 
-				|| map->map[i][j] == '0')
+			if (env->map.map[i][j] == '1' || env->map.map[i][j] == 'C' 
+				|| env->map.map[i][j] == '0')
 				j++;
-			else if (map->map[i][j] == 'E' || map->map[i][j] == 'P')
+			else if (env->map.map[i][j] == 'E' || env->map.map[i][j] == 'P')
 			{
 				j++;
-				map->ep++;
+				env->map.ep++;
 			}
 			else
-				ft_error("unknown item used in map");
+				ft_error(env, "unknown item used in map", 2);
 		}
 		i++;
 	}
-	if (map->ep != 2)
-		ft_error("There is too much or not enough exit or player");
+	if (env->map.ep != 2)
+		ft_error(env, "There is too much or not enough exit or player", 2);
 	return (0);
 }
 
-int	is_square(t_map	*map)
+int	is_square(t_env	*env)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < map->line_nbr)
+	while (i < env->map.line_nbr)
 	{
-		if (i == map->line_nbr - 1)
+		if (i == env->map.line_nbr - 1)
 		{
-			if (ft_strlen(map->map[i]) == map->line_len - 1)
+			if (ft_strlen(env->map.map[i]) == env->map.line_len - 1)
 				return (0);
 			else
-				ft_error("You need a square map");
+				ft_error(env, "You need a square map", 2);
 		}
-		else if (ft_strlen(map->map[i]) != map->line_len)
-			ft_error("You need a square map");
+		else if (ft_strlen(env->map.map[i]) != env->map.line_len)
+			ft_error(env, "You need a square map", 2);
 		i++;
 	}
 	return (0);
