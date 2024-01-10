@@ -6,23 +6,28 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:29:39 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/09 13:28:39 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:24:45 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "libft.h"
 
 int	map_init(t_env *env, char *argv)
 {
 	size_t	j;
 	int	fd;
+	char	*line;
 	env->map.ep = 0;
 
 	fd = open(argv, O_RDONLY);
 	env->map.line_nbr = 0;
-	while (get_next_line(fd))
+	line = get_next_line(fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
 		env->map.line_nbr++;
+	}
 	close(fd);
 	if (env->map.line_nbr == 0)
 		ft_error("Empty file");
@@ -35,8 +40,8 @@ int	map_init(t_env *env, char *argv)
 		env->map.map[j++] = get_next_line(fd);
 	env->map.line_len = ft_strlen(env->map.map[0]);
 	close(fd);
-	pce_init(env);
 	my_mlx_init(env);
+	pce_init(env);
 	textures_init(env);
 	return(0);
 }
@@ -46,6 +51,8 @@ int	my_mlx_init(t_env *env)
 	size_t	width;
 	size_t	height;
 
+	env->collec.collec_cpt = 0;
+	env->collec.collec_nbr = 0;
 	width = (env->map.line_len -1) * 32;
 	height = env->map.line_nbr * 32;
 	env->mlx = mlx_init(width, height, "so_long", true);
@@ -75,8 +82,8 @@ void pce_init(t_env *env)
 					env->exit.x = x;
 					env->exit.y = y;
 				}
-				else if (env->map.map[x][y] == 'E')
-					env->collec.collec_nbr++;
+			else if (env->map.map[x][y] == 'C')
+				env->collec.collec_nbr++;
 			y++;
 		}
 		x++;

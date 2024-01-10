@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 18:20:08 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/09 14:51:47 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/01/10 13:23:48 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_player
 {
 	size_t x;
 	size_t	y;
+	size_t	movement;
 } t_player;
 
 typedef struct collectibles

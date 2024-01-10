@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:17:09 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/09 14:53:51 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:03:03 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	which_texture(t_env *env, char *texture)
 	{
 		ft_create_texture(env, env->images.ground, 0);
 		ft_create_texture(env, env->images.player, 0);
-		env->images.player->instances[env->images.player->count - 1].z = 2;
+		env->images.player->instances[env->images.player->count - 1].z = 3;
 	}
 	return (0);
 }
