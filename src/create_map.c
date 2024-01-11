@@ -6,13 +6,13 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:17:09 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/10 19:10:12 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/01/11 12:56:40 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void ft_error(t_env *env, char *error, int nbr)
+void	ft_error(t_env *env, char *error, int nbr)
 {
 	ft_printf("Error: %s\n", error);
 	if (nbr >= 1)
@@ -36,8 +36,8 @@ int	my_mlx_init(t_env *env)
 int	display_images(t_env *env, mlx_image_t *image, int offset)
 {
 	if (mlx_image_to_window(env->mlx, image,
-	env->images.y * 32 + offset, env->images.x * 32) < 0)
-        ft_error(env, "Error when exporting image to window", 2);
+			env->images.y * 32 + offset, env->images.x * 32) < 0)
+		ft_error(env, "Error when exporting image to window", 2);
 	image->instances[image->count - 1].z = 0;
 	return (0);
 }
@@ -70,7 +70,8 @@ int	which_image(t_env *env, char *texture)
 int	map_read(t_env *env)
 {
 	size_t	x;
-	int	y;
+	int		y;
+
 	x = 0;
 	while (x < env->map.line_nbr)
 	{

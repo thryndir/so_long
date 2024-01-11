@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:59:46 by lgalloux          #+#    #+#             */
-/*   Updated: 2023/12/31 16:42:18 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/01/11 12:59:32 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,21 +77,21 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int nb, int fd);
 
 //printf
-int		ft_printf(const char *format, ...);
-int		ft_printchar(char c);
-int		ft_printstr(char *str);
-int		ft_printnbr(int nb);
-int		ft_printptr(void *address);
-size_t	ft_strlen(const char *str);
-int		ft_printunbr_base(unsigned int nb, char *base);
+int					ft_printf(const char *format, ...);
+int					ft_printchar(char c);
+int					ft_printstr(char *str);
+int					ft_printnbr(int nb);
+int					ft_printptr(void *address);
+size_t				ft_strlen(const char *str);
+int					ft_printunbr_base(unsigned int nb, char *base);
 
 // get_next_line
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *str);
-size_t	ft_strlcat(char *dst, const char *src, size_t size);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-char	*ft_strjoin(const char *str1, const char *str2);
-char	*ft_strchr(const char *string, int searchedChar);
+char				*get_next_line(int fd);
+size_t				ft_strlen(const char *str);
+size_t				ft_strlcat(char *dst, const char *src, size_t size);
+size_t				ft_strlcpy(char *dst, const char *src, size_t size);
+char				*ft_strjoin(const char *str1, const char *str2);
+char				*ft_strchr(const char *string, int searchedChar);
 
 // BONUS
 t_list				*ft_lstnew(void *content);

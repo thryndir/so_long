@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 01:40:12 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/10 17:58:18 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/01/11 12:49:39 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	map_verif(t_env	*env)
 	pathway(&env->map, env->player.x, env->player.y);
 	while (x < env->map.line_nbr)
 	{
-		if (!ft_strchr(env->map.map[x], 'E') 
+		if (!ft_strchr(env->map.map[x], 'E')
 			&& !ft_strchr(env->map.map[x], 'C'))
 			x++;
 		else
@@ -36,21 +36,21 @@ int	map_verif(t_env	*env)
 
 int	is_closed(t_env	*env)
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
 
 	j = 0;
 	i = 0;
 	while (i < env->map.line_nbr)
 	{
-		if (env->map.map[i][0] != '1' 
+		if (env->map.map[i][0] != '1'
 			|| env->map.map[i][env->map.line_len - 2] != '1')
 			ft_error(env, "You need a closed map on top or bottom", 2);
 		i++;
 	}
 	while (j < env->map.line_len - 1)
 	{
-		if (env->map.map[0][j] != '1' 
+		if (env->map.map[0][j] != '1'
 			|| env->map.map[env->map.line_nbr - 1][j] != '1')
 			ft_error(env, "You need a closed map on the sides", 2);
 		j++;
@@ -69,7 +69,7 @@ int	is_full(t_env	*env)
 		j = 0;
 		while (env->map.map[i][j] != '\n' && env->map.map[i][j] != '\0')
 		{
-			if (env->map.map[i][j] == '1' || env->map.map[i][j] == 'C' 
+			if (env->map.map[i][j] == '1' || env->map.map[i][j] == 'C'
 				|| env->map.map[i][j] == '0')
 				j++;
 			else if (env->map.map[i][j] == 'E' || env->map.map[i][j] == 'P')

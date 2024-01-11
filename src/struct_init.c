@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:29:39 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/10 18:59:49 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/01/11 12:53:19 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	map_init(t_env *env, char *argv)
 {
 	size_t	j;
-	int	fd;
- 
+	int		fd;
+
 	env->map.ep = 0;
 	env->collec.collec_cpt = 0;
 	env->collec.collec_nbr = 0;
@@ -41,9 +41,9 @@ void	map_init(t_env *env, char *argv)
 void	count_line(t_env *env, char *argv)
 {
 	char	*line;
-	int	fd;
-	env->map.ep = 0;
+	int		fd;
 
+	env->map.ep = 0;
 	fd = open(argv, O_RDONLY);
 	env->map.line_nbr = 0;
 	line = get_next_line(fd);
@@ -56,7 +56,7 @@ void	count_line(t_env *env, char *argv)
 	close(fd);
 }
 
-void pce_init(t_env *env)
+void	pce_init(t_env *env)
 {
 	size_t	x;
 	size_t	y;
@@ -68,15 +68,15 @@ void pce_init(t_env *env)
 		while (env->map.map[x][y] != '\n' && env->map.map[x][y] != '\0')
 		{
 			if (env->map.map[x][y] == 'P')
-				{
-					env->player.x = x;
-					env->player.y = y;
-				}
+			{
+				env->player.x = x;
+				env->player.y = y;
+			}
 			else if (env->map.map[x][y] == 'E')
-				{
-					env->exit.x = x;
-					env->exit.y = y;
-				}
+			{
+				env->exit.x = x;
+				env->exit.y = y;
+			}
 			else if (env->map.map[x][y] == 'C')
 				env->collec.collec_nbr++;
 			y++;
@@ -93,23 +93,24 @@ void	textures_init(t_env *env)
 	env->texture.g_bool = 1;
 	env->texture.wall = mlx_load_png("./sprites/tiles/wall.png");
 	if (!env->texture.wall)
-        ft_error(env, "Error when creating texture 1", 3);
+		ft_error(env, "Error when creating texture 1", 3);
 	env->texture.w_bool = 1;
 	env->texture.player = mlx_load_png
-	("./sprites/hero/idle/idle-knight-r-1.png");
+		("./sprites/hero/idle/idle-knight-r-1.png");
 	if (!env->texture.player)
-        ft_error(env, "Error when creating texture 2", 3);
+		ft_error(env, "Error when creating texture 2", 3);
 	env->texture.p_bool = 1;
 	env->texture.exit = mlx_load_png("./sprites/tiles/door.png");
 	if (!env->texture.exit)
-        ft_error(env, "Error when creating texture 3", 3);
+		ft_error(env, "Error when creating texture 3", 3);
 	env->texture.e_bool = 1;
 	env->texture.collec = mlx_load_png("./sprites/collectibles/axe.png");
 	if (!env->texture.collec)
-        ft_error(env, "Error when creating texture 4", 3);
+		ft_error(env, "Error when creating texture 4", 3);
 	env->texture.c_bool = 1;
 	images_init(env);
 }
+
 void	images_init(t_env *env)
 {
 	env->images.ground = mlx_texture_to_image(env->mlx, env->texture.ground);

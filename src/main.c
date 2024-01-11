@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:12:06 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/10 18:33:40 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/01/11 12:54:49 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_env	env;
+
 	(void)argc;
 	map_init(&env, argv[1]);
 	map_verif(&env);

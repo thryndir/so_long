@@ -6,14 +6,14 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 23:00:04 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/10 19:21:27 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/01/11 12:54:16 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 void	del_textures(t_env *env)
-{	
+{
 	if (env->texture.g_bool == 1)
 		mlx_delete_texture(env->texture.ground);
 	if (env->texture.w_bool == 1)
@@ -73,9 +73,9 @@ void	player_move(t_env *env, size_t x, size_t y)
 {
 	if (ft_strchr("0EC", env->map.map[x][y]))
 	{
-		if (env->map.map[x][y] == 'E' 
+		if (env->map.map[x][y] == 'E'
 			&& env->collec.collec_cpt == env->collec.collec_nbr)
-				mlx_close_window(env->mlx);
+			mlx_close_window(env->mlx);
 		if (env->map.map[x][y] == 'C')
 		{
 			mlx_image_to_window(env->mlx, env->images.ground, y * 32, x * 32);
