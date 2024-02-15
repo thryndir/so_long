@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:59:46 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/01 15:35:06 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:28:05 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,19 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int nb, int fd);
 
 //printf
-int		ft_printf(const char *format, ...);
-int		ft_printchar(char c);
-int		ft_printstr(char *str);
-int		ft_printnbr(int nb);
-int		ft_printptr(void *address);
-int		ft_printunbr_base(unsigned int nb, char *base);
+int					ft_printf(const char *format, ...);
+int					printchar(char c);
+int					ft_printstr(char *str);
+int					ft_printnbr(int nb);
+int					ft_printptr(void *address);
+int					ft_printunbr_base(unsigned int nb, char *base);
 
 // get_next_line
-char	*get_next_line(int fd);
-size_t	ft_backcat(char *dst, const char *src, size_t size);
-char	*ft_backjoin(const char *str1, const char *str2);
-void	ft_clean_line(char *buffer);
-char	*ft_end_of_line(char *str, char *buffer);
+char				*get_next_line(int fd);
+size_t				ft_backcat(char *dst, const char *src, size_t size);
+char				*ft_backjoin(const char *str1, const char *str2);
+void				ft_clean_line(char *buffer);
+char				*ft_end_of_line(char *str, char *buffer);
 
 // BONUS
 t_list				*ft_lstnew(void *content);

@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 14:06:35 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/01 15:28:55 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:28:54 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ size_t	ft_backcat(char *dst, const char *src, size_t size)
 	dst[destlen + i] = '\0';
 	return (destlen + srclen);
 }
+
 char	*ft_backjoin(const char *str1, const char *str2)
 {
 	char	*result;

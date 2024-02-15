@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 01:40:12 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/11 12:49:39 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:00:41 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	map_verif(t_env	*env)
 		else
 			ft_error(env, "Exit or coin not accessible", 2);
 	}
+	if (env->collec.collec_nbr == 0)
+		ft_error(env, "Not enough collectibles", 2);
 	return (0);
 }
 

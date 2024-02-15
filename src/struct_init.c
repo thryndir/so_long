@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:29:39 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/11 12:53:19 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:33:59 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	count_line(t_env *env, char *argv)
 
 	env->map.ep = 0;
 	fd = open(argv, O_RDONLY);
+	if (fd == -1)
+		ft_error(env, "file doesn't exist", 0);
 	env->map.line_nbr = 0;
 	line = get_next_line(fd);
 	while (line)
