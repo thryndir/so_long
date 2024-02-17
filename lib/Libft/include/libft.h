@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:59:46 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/02/15 18:28:05 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:06:31 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void				ft_putnbr_fd(int nb, int fd);
 
 //printf
 int					ft_printf(const char *format, ...);
-int					printchar(char c);
+int					ft_printchar(char c);
 int					ft_printstr(char *str);
 int					ft_printnbr(int nb);
 int					ft_printptr(void *address);

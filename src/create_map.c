@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:17:09 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/11 12:56:40 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:52:23 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	my_mlx_init(t_env *env)
 int	display_images(t_env *env, mlx_image_t *image, int offset)
 {
 	if (mlx_image_to_window(env->mlx, image,
-			env->images.y * 32 + offset, env->images.x * 32) < 0)
+			env->images.x * 32 + offset, env->images.y * 32) < 0)
 		ft_error(env, "Error when exporting image to window", 2);
 	image->instances[image->count - 1].z = 0;
 	return (0);
@@ -69,21 +69,21 @@ int	which_image(t_env *env, char *texture)
 
 int	map_read(t_env *env)
 {
-	size_t	x;
-	int		y;
+	size_t	y;
+	int		x;
 
-	x = 0;
-	while (x < env->map.line_nbr)
+	y = 0;
+	while (y < env->map.line_nbr)
 	{
-		y = 0;
-		while (env->map.map[x][y])
+		x = 0;
+		while (env->map.map[y][x])
 		{
-			env->images.x = x;
 			env->images.y = y;
-			which_image(env, &env->map.map[x][y]);
-			y++;
+			env->images.x = x;
+			which_image(env, &env->map.map[y][x]);
+			x++;
 		}
-		x++;
+		y++;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 18:20:08 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/01/11 13:03:39 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:58:40 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # include <stdio.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include "MLX42.h"
 # include "libft.h"
 
@@ -51,14 +52,14 @@ typedef struct s_images
 	mlx_image_t	*player;
 	mlx_image_t	*collec;
 	mlx_image_t	*exit;
-	size_t		x;
 	size_t		y;
+	size_t		x;
 }	t_images;
 
 typedef struct s_player
 {
-	size_t	x;
 	size_t	y;
+	size_t	x;
 	size_t	movement;
 }	t_player;
 
@@ -70,8 +71,8 @@ typedef struct collectibles
 
 typedef struct s_exit
 {
-	size_t	x;
 	size_t	y;
+	size_t	x;
 }	t_exit;
 
 typedef struct s_env
@@ -99,9 +100,9 @@ int		is_full(t_env *env);
 int		is_square(t_env *env);
 int		map_verif(t_env *env);
 void	ft_error(t_env *env, char *error, int nbr);
-void	pathway(t_map *map, size_t x, size_t y);
+void	pathway(t_map *map, size_t y, size_t x);
 void	my_keyhook(mlx_key_data_t keydata, void *params);
-void	player_move(t_env *env, size_t x, size_t y);
+void	player_move(t_env *env, size_t y, size_t x);
 void	ft_quit(t_env *env, int nbr);
 void	del_textures(t_env *env);
 

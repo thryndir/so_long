@@ -6,7 +6,7 @@
 /*   By: lgalloux <lgalloux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:29:39 by lgalloux          #+#    #+#             */
-/*   Updated: 2024/02/15 16:33:59 by lgalloux         ###   ########.fr       */
+/*   Updated: 2024/02/17 16:32:20 by lgalloux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	map_init(t_env *env, char *argv)
 {
-	size_t	j;
+	size_t	y;
 	int		fd;
 
 	env->map.ep = 0;
@@ -22,15 +22,17 @@ void	map_init(t_env *env, char *argv)
 	env->collec.collec_nbr = 0;
 	env->player.movement = 0;
 	count_line(env, argv);
-	if (env->map.line_nbr == 0)
-		ft_error(env, "Empty file", 0);
+	if (env->map.line_nbr <= 2)
+		ft_error(env, "Invalid Map", 0);
 	env->map.map = malloc((env->map.line_nbr + 1) * sizeof(char *));
 	if (!env->map.map)
 		ft_error(env, "Malloc failed", 1);
-	j = 0;
+	y = 0;
 	fd = open(argv, O_RDONLY);
-	while (j <= env->map.line_nbr)
-		env->map.map[j++] = get_next_line(fd);
+	while (y <= env->map.line_nbr)
+		env->map.map[y++] = get_next_line(fd);
+	if (env->map.map[0][0] == '\n')
+		ft_error(env, "Invalid Map", 1);
 	env->map.line_len = ft_strlen(env->map.map[0]);
 	close(fd);
 	my_mlx_init(env);
@@ -60,30 +62,30 @@ void	count_line(t_env *env, char *argv)
 
 void	pce_init(t_env *env)
 {
-	size_t	x;
 	size_t	y;
+	size_t	x;
 
-	x = 0;
-	while (x < env->map.line_nbr)
+	y = 0;
+	while (y < env->map.line_nbr)
 	{
-		y = 0;
-		while (env->map.map[x][y] != '\n' && env->map.map[x][y] != '\0')
+		x = 0;
+		while (env->map.map[y][x] != '\n' && env->map.map[y][x] != '\0')
 		{
-			if (env->map.map[x][y] == 'P')
+			if (env->map.map[y][x] == 'P')
 			{
-				env->player.x = x;
 				env->player.y = y;
+				env->player.x = x;
 			}
-			else if (env->map.map[x][y] == 'E')
+			else if (env->map.map[y][x] == 'E')
 			{
-				env->exit.x = x;
 				env->exit.y = y;
+				env->exit.x = x;
 			}
-			else if (env->map.map[x][y] == 'C')
+			else if (env->map.map[y][x] == 'C')
 				env->collec.collec_nbr++;
-			y++;
+			x++;
 		}
-		x++;
+		y++;
 	}
 }
 
